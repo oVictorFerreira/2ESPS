@@ -6,11 +6,11 @@ public class Main {
         var nome = "João";
 
         //Fazendo output do dado (print)
-        System.out.println("Olá" + nome);
+        System.out.println("Olá " + nome);
 
         //Sem o ln ele não pula a linha
         var sobrenome = "Ferreira";
-        System.out.print(nome);
+        System.out.print(nome + " ");
         System.out.print(sobrenome);
 
         //Console é um meio de comunicação entre o programador e o sistema
