@@ -35,7 +35,7 @@ public class Main {
         //Numeros inteiros nao podem começar com 0 e não é possivel inserir vários pontos, nem caractere especial, logo, nesse caso é uma string
         String CPF = "011.987.678-00";
 
-        //Método toString() transforma em string
+        //Método to String() transforma em string
 
         //Com char
         //String é uma coleção de caracteres(chars)
