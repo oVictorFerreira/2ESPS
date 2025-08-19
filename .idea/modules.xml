@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/2ESPS.iml" filepath="$PROJECT_DIR$/.idea/2ESPS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java/Aula_1_Variaveis/Aula_1_Variaveis.iml" filepath="$PROJECT_DIR$/Java/Aula_1_Variaveis/Aula_1_Variaveis.iml" />
       <module fileurl="file://$PROJECT_DIR$/Java/primeiroappJava/primeiroappJava.iml" filepath="$PROJECT_DIR$/Java/primeiroappJava/primeiroappJava.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Java/variaveis/variaveis.iml" filepath="$PROJECT_DIR$/Java/variaveis/variaveis.iml" />
     </modules>
   </component>
 </project>
