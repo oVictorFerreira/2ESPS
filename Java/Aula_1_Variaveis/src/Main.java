@@ -7,6 +7,7 @@ public class Main {
         // Criar um espaço an memoria para armazenar um dado
 
         var nome = "João victor";
+        System.out.println(nome);
 
     }
 }

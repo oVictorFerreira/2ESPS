@@ -1,5 +1,5 @@
-public class Main {
-    public static void main(String[] args) {
+﻿public class Main {
+    public static void main(String[] args){
         //Tipos Primitivos
 
         int NumInteiro = 10;
