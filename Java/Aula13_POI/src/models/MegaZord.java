@@ -4,7 +4,6 @@ public class MegaZord implements  ZordVermelho, ZordAzul, ZordPreto, ZordRosa, Z
     //Métodos de ZordAmarelo
     public void acoplarZordAmarelo() {
         System.out.println("Aclopou o Zord com o dino" + ZordAmarelo.dino);
-
     }
 
     //Métodos de ZordAzul
