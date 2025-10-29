@@ -18,7 +18,8 @@ public class Main {
         Medico medico1 = new Medico(
                 "Carlos Mendes",
                 "2550",
-                "Pediatria"
+                "Pediatria",
+                "carlos.mendes@Gmail.com"
         );
 
         Medicamento dipirona = new Medicamento(
