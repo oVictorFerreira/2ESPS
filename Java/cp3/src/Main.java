@@ -1,4 +1,9 @@
 package models;
+import models.Paciente;
+import models.Medico;
+import models.Prescricao;
+import models.Medicamento;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -11,21 +16,31 @@ public class Main {
         );
 
         Medico medico1 = new Medico(
-                "João Silva",
+                "Carlos Mendes",
                 "2550",
-                "joao.silva@gmail.com"
+                "Pediatria"
         );
 
         Medicamento dipirona = new Medicamento(
-                "Dipirona Monohidratada",
-                3
+                "Dipirona Monoidratada",
+                500
+        );
+
+        Prescricao prescricao1 = new Prescricao(
+                "J00",
+                "29/10/2025",
+                medico1,
+                paciente1,
+                dipirona
         );
 
         paciente1.imprimirDados();
+        System.out.println();
         medico1.imprimirDados();
+        System.out.println();
         dipirona.imprimirDados();
+        System.out.println();
 
-        System.out.println("O médico "+medico1.getNomemed() + " receitou ao paciente "+ paciente1.getNome()+ "\n o medicamento "+ dipirona.getFormula() +" " + dipirona.getDosagem() +"mg");
-
+        prescricao1.gerarPrescricao();
     }
 }

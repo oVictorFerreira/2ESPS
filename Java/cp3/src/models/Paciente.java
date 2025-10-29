@@ -38,11 +38,13 @@ public class Paciente {
         return cpf;
     }
 
-    //DONE: Métodos próprios
+    // Métodos próprios
     void imprimirDados(){
         System.out.println("Nome: " + nome);
         System.out.println("CPF: " + cpf);
         System.out.println("Idade: " + idade);
         System.out.println("E-mail: " + email);
     }
+
+
 }
