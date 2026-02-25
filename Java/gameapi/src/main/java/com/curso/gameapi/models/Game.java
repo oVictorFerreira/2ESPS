@@ -30,13 +30,16 @@ public class Game {
 
     // Construtores - - MENOS ID PQ QUEM CUIDA É O BANCO DE DADOS
 
-    public Game(String title, String publisher, String gender, Year year) {
+    public Game(String title, String publisher, String gender, Year releaseyear) {
         this.title = title;
         this.publisher = publisher;
         this.gender = gender;
         this.releaseyear = releaseyear;
     }
 
+    public Game() {
+
+    }
 
     // Getters
 
