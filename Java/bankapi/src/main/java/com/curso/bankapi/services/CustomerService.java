@@ -5,6 +5,9 @@ import com.curso.bankapi.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service // Isso indica produçao de regra de negócio
 public class CustomerService {
 
@@ -48,8 +51,19 @@ public class CustomerService {
         return foundCustomer;
     }
 
-    // Todo: Métod0 para listar todos os clientes
+    // Done: Métod0 para listar todos os clientes
 
+    public List<Customer> allCustomers() {
+        //Criando uma lista vazia
+        List<Customer> customers = new ArrayList<>();
 
+        //Populando lista
+        customerRepository.findAll().forEach(customer ->{
+            customers.add(customer);
+            System.out.println(customer);
+        });
+
+        return customers;
+    }
 
 }
