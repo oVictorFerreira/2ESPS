@@ -43,7 +43,7 @@ public class BankapiApplication {
         //Listando todos os customers
         //customerService.allCustomers();
 
-        //TODO: Testar serviços de Account
+        //Done: Testar serviços de Account
         //Criando uma conta
         //accountService.createAccount(2);
 
@@ -53,7 +53,7 @@ public class BankapiApplication {
         //Listando todas as contas
         //accountService.allAccounts();
 
-        //TODO: Testar Serviços de Transactions
+        //Done: Testar Serviços de Transactions
         //transactionService.deposit(UUID.fromString("ef19d3fd-cd22-4b19-80f6-5bfc24836b02"), 1000.0f);
         //transactionService.withdraw(UUID.fromString("ef19d3fd-cd22-4b19-80f6-5bfc24836b02"), 250.0f);
         //transactionService.listByAccount(UUID.fromString("ef19d3fd-cd22-4b19-80f6-5bfc24836b02"));

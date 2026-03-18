@@ -1,18 +1,41 @@
 package com.curso.bankapi.controllers.json;
 
 
-// Todo: Indicação dos annotations necessarios
+import com.curso.bankapi.models.Customer;
+import com.curso.bankapi.services.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+// Done: Indicação dos annotations necessarios
+@RestController // Indica Controllers com endpoint JSON
+@RequestMapping("/json/customers") //Raiz de customer - mapeamento dos corredores
+
 public class CustomerJSONController {
 
 
-    // Todo: Injeção de DPS
-
-    // Todo: Metod0 GET - Listar todos os customers
+    // Done: Injeção de DPS
+    @Autowired
+    private CustomerService customerService;
+    // Done: Metod0 GET - Listar todos os customers
     //Endpoint: http://localhost:8080/json/customers
+    @GetMapping //Indica endpoint com o métod0 GET
+    public List<Customer> getAllCustomers() {
+        return customerService.allCustomers();
+    }
+
 
     // Todo: Métod0 GET - Buscar customer por ID
     //Endpoint: http://localhost:8080/json/customers/customerId
-
+    @GetMapping("/{customerId}")
+    //@PathVartiable indica uma propriedade que pode ser passada por meio de uma URI
+    public Customer getCustomerById(@PathVariable Integer customerId) {
+        return customerService.customerById(customerId);
+    }
 
     // Todo: Métod0 POST - Criar novo Customer
     // Endpoint: http://localhost:8080/json/customers/create

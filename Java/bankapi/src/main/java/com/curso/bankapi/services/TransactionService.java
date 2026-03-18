@@ -3,95 +3,88 @@ package com.curso.bankapi.services;
 import com.curso.bankapi.models.Account;
 import com.curso.bankapi.models.Transaction;
 import com.curso.bankapi.models.TransactionType;
-import com.curso.bankapi.repositories.CustomerRepository;
 import com.curso.bankapi.repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Service
 public class TransactionService {
 
-    // Done: Injetar DPs
-
+    //DONE: Injetar DPs
     @Autowired
     private TransactionRepository transactionRepository;
+
     @Autowired
     private AccountService accountService;
 
-    // Done: Metod0 para transação do tipo depósito
-
-    public Transaction deposit(UUID acNumber, Float amount) {
-        // indicando a conta a ser utilizada na transação
+    //DONE: Métod0 para transação do tipo deposito
+    public Transaction deposit(UUID acNumber, Float amout){
+        //Indicando a conta a ser utilizada na transação
         Account account = accountService.accountByAcNumber(acNumber);
 
-        // Criando novo saldo
+        //CRiando novo saldo
+        Float newBalance = account.getBalance() + amout;
 
-        Float newBalance = account.getBalance() + amount;
+        //CRiando a transação a ser salva
+        Transaction transaction = new Transaction(amout, TransactionType.DEPOSIT, account);
 
-        // Criando a transação a ser salva
-        Transaction transaction = new Transaction(amount, TransactionType.DEPOSIT, account);
-
-        // Tentativa de salvar a transação no DB
+        //Tentativa de salvar a transação no Db
         try{
             //Atualizando saldo
             accountService.updateBalance(account, newBalance);
 
-            //Salvando a trasação no banco
-
+            //Salvando a transação no banco
             transactionRepository.save(transaction);
-
-            System.out.println("Depósito realizado com sucesso.");
-            System.out.println(transaction);
+            System.out.println("Deposito efetuado com sucesso.");
         }
-        catch(Exception exception){
-            System.out.println("Erro ao depositar");
+        catch (Exception exception){
+            System.out.println("Erro ao efetuar transação:");
             System.out.println(exception);
         }
+
         return transaction;
     }
 
-    // Done: Métod0 para transação do tipo saque
-
-    public Transaction withdraw(UUID acNumber, Float amount) {
-        // indicando a conta a ser utilizada na transação
+    //DONE: Métod0 para transação do tipo saque
+    public Transaction withdraw(UUID acNumber, Float amout){
+        //Indicando a conta a ser utilizada na transação
         Account account = accountService.accountByAcNumber(acNumber);
 
-        // Criando novo saldo
+        //CRiando novo saldo
+        Float newBalance = account.getBalance() - amout;
 
-        Float newBalance = account.getBalance() - amount;
+        //CRiando a transação a ser salva
+        Transaction transaction = new Transaction(amout, TransactionType.WITHDRAW, account);
 
-        // Criando a transação a ser salva
-        Transaction transaction = new Transaction(amount, TransactionType.WITHDRAW, account);
-
-        // Tentativa de salvar a transação no DB
+        //Tentativa de salvar a transação no Db
         try{
             //Atualizando saldo
             accountService.updateBalance(account, newBalance);
 
-            //Salvando a trasação no banco
-
+            //Salvando a transação no banco
             transactionRepository.save(transaction);
-
-            System.out.println("Saque realizado com sucesso.");
-            System.out.println(transaction);
+            System.out.println("Saque efetuado com sucesso.");
         }
-        catch(Exception exception){
-            System.out.println("Erro ao sacar");
+        catch (Exception exception){
+            System.out.println("Erro ao efetuar transação:");
             System.out.println(exception);
         }
+
         return transaction;
     }
 
-    // Done: Métod0 para listar todas as transações por número de conta
+    //DONE: Métod0 para listar todas as transações por num de conta
+    public List<Transaction> listByAccount(UUID acNumber){
 
-    public List<Transaction> listByAccount(UUID acNumber) {
-        //Criando uma lista vazia
+        //Criando lista vazia
         List<Transaction> transactions = new ArrayList<>();
 
-        // Populando a lista
-        transactionRepository.findByAccountAcNumber(acNumber).forEach(transaction ->{
+        //Populando
+        transactionRepository.findByAccountAcNumber(acNumber).forEach(transaction -> {
             transactions.add(transaction);
             System.out.println(transaction);
         });
