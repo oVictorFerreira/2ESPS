@@ -1,13 +1,13 @@
 package com.curso.bankapi.controllers.json;
 //Todo: Indicar estrutura REST
 
+import com.curso.bankapi.models.OperationDTO;
 import com.curso.bankapi.models.Transaction;
 import com.curso.bankapi.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -28,8 +28,21 @@ public class TransactionJSONController {
     }
 
 
+
     // Todo: Métod0 POST - Operação de depósito
-
+    // Endpoint: http://localhost:8080/json/transactions/deposit
+    // Body: {"acNumber":"um num de conta UUID" , "amount":100}
+    @PostMapping("/deposit")
+    public ResponseEntity<Transaction> postDeposit(@RequestBody OperationDTO dto){
+        Transaction transaction = transactionService.deposit(dto.acNumber(), dto.amount());
+        return ResponseEntity.status(HttpStatus.CREATED).body(transaction);
+    }
     // Todo: Métod0 POST - Operação de Saque
-
+    // Endpoint: http://localhost:8080/json/transactions/withdraw
+    // Body: {"acNumber":"um num de conta UUID" , "amount":100}
+    @PostMapping("/withdraw")
+    public ResponseEntity<Transaction> postWithdraw(@RequestBody OperationDTO dto){
+        Transaction transaction = transactionService.withdraw(dto.acNumber(), dto.amount());
+        return ResponseEntity.status(HttpStatus.CREATED).body(transaction);
+    }
 }

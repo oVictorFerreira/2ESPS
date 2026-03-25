@@ -4,10 +4,9 @@ package com.curso.bankapi.controllers.json;
 import com.curso.bankapi.models.Account;
 import com.curso.bankapi.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -21,21 +20,21 @@ public class AccountJSONController {
     @Autowired
     private AccountService accountService;
 
-    // Todo: métod0 GET - listar todas as contas
+    // Done: métod0 GET - listar todas as contas
     //Endpoint: http://localhost:8080/json/accounts
     @GetMapping
     public List<Account> getAllAccounts(){
         return accountService.allAccounts();
     }
 
-    // Todo: Métod0 GET - buscar conta por número de conta
+    // Done: Métod0 GET - buscar conta por número de conta
     //Endpoint: http://localhost:8080/json/accounts/acNumber
     @GetMapping("/{acNumber}")
     public Account getAccountByAcNumber(@PathVariable UUID acNumber){
         return accountService.accountByAcNumber(acNumber);
     }
 
-    // Todo: Método GET - Buscar Saldo por número de conta
+    // Done: Métod0 GET - Buscar Saldo por número de conta
     //Endpoint: http://localhost:8080/json/accounts/acNumber/balance
     @GetMapping("/{acNumber}/balance")
     public Float getBalanceByAcNumber(@PathVariable UUID acNumber){
@@ -43,6 +42,11 @@ public class AccountJSONController {
     }
 
 
-    // Todo: métod0 POST - Criar nova conta
+    // Done: métod0 POST - Criar nova conta
     //Endpoint: http://localhost:8080/json/accounts/create/customerId
+    @PostMapping("create/{customerId}")
+    public ResponseEntity<Account> postAccount(@PathVariable Integer customerId){
+        Account account = accountService.createAccount(customerId);
+        return ResponseEntity.status(HttpStatus.CREATED).body(account);
+    }
 }

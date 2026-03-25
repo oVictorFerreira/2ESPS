@@ -4,10 +4,9 @@ package com.curso.bankapi.controllers.json;
 import com.curso.bankapi.models.Customer;
 import com.curso.bankapi.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class CustomerJSONController {
     }
 
 
-    // Todo: Métod0 GET - Buscar customer por ID
+    // Done: Métod0 GET - Buscar customer por ID
     //Endpoint: http://localhost:8080/json/customers/customerId
     @GetMapping("/{customerId}")
     //@PathVartiable indica uma propriedade que pode ser passada por meio de uma URI
@@ -37,8 +36,14 @@ public class CustomerJSONController {
         return customerService.customerById(customerId);
     }
 
-    // Todo: Métod0 POST - Criar novo Customer
+    // Done: Métod0 POST - Criar novo Customer
     // Endpoint: http://localhost:8080/json/customers/create
     // Body: {"name":"Joaquim José", "cpf":"000.000.000-00"}
 
+    @PostMapping("/create")
+    public ResponseEntity<Customer> postCustomer(@RequestBody Customer customer) {
+        customerService.createCustomer(customer);
+        return ResponseEntity.status(HttpStatus.CREATED).body(customer);
+
+    }
 }
