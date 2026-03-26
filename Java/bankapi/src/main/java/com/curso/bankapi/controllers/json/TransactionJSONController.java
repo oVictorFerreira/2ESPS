@@ -1,5 +1,5 @@
 package com.curso.bankapi.controllers.json;
-//Todo: Indicar estrutura REST
+//Done: Indicar estrutura REST
 
 import com.curso.bankapi.models.OperationDTO;
 import com.curso.bankapi.models.Transaction;
@@ -20,7 +20,7 @@ public class TransactionJSONController {
     private TransactionService transactionService;
 
 
-    // Todo: Métod0 GET - Listar todas as transações por número de conta
+    // Done: Métod0 GET - Listar todas as transações por número de conta
     // Endpoint: http://localhost:8080/json/transactions/acNumber
     @GetMapping("/{acNumber}")
     public List<Transaction> getAllTransactionsByAcNumber(@PathVariable UUID acNumber){
@@ -29,7 +29,7 @@ public class TransactionJSONController {
 
 
 
-    // Todo: Métod0 POST - Operação de depósito
+    // Done: Métod0 POST - Operação de depósito
     // Endpoint: http://localhost:8080/json/transactions/deposit
     // Body: {"acNumber":"um num de conta UUID" , "amount":100}
     @PostMapping("/deposit")
@@ -37,7 +37,7 @@ public class TransactionJSONController {
         Transaction transaction = transactionService.deposit(dto.acNumber(), dto.amount());
         return ResponseEntity.status(HttpStatus.CREATED).body(transaction);
     }
-    // Todo: Métod0 POST - Operação de Saque
+    // Done: Métod0 POST - Operação de Saque
     // Endpoint: http://localhost:8080/json/transactions/withdraw
     // Body: {"acNumber":"um num de conta UUID" , "amount":100}
     @PostMapping("/withdraw")
