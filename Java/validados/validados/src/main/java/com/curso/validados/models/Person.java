@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 public class Person {
@@ -25,16 +26,17 @@ public class Person {
     @Email(message = "O e-mail deve ser válido")
     private String email;
 
-    @Pattern(regexp = "\\d{11}", message = "O CPF deve ter 11 dígitos.")
+    @CPF(message = "O CPF deve ser válido")
+    //@Pattern(regexp = "\\d{11}", message = "O CPF deve ter 11 dígitos.")
     private String cpf;
 
     // Construtores
 
-    public Person(String cpf, String name, int age, String email) {
-        this.cpf = cpf;
+    public Person(String name, int age, String email,String cpf) {
         this.name = name;
         this.age = age;
         this.email = email;
+        this.cpf = cpf;
     }
 
     public Person() {
@@ -87,10 +89,10 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "id=" + id +
-                ", cpf='" + cpf + '\'' +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", email='" + email + '\'' +
+                ", cpf='" + cpf + '\'' +
                 '}';
     }
 

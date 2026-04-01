@@ -24,8 +24,8 @@ public class ValidadosApplication {
 
 	public static void testador(){
 
-		Person personA = new Person("11111111111", "Maria", 12, "Jorge@Matheus.com");
-		personService.create(personA);
+		//Person personA = new Person("Maria", 12, "Jorge@Matheus.com","11111111111");
+		//personService.create(personA);
 
 
 	}
