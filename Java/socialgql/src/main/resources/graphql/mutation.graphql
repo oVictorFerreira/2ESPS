@@ -1,0 +1,12 @@
+# Dentro do arquivo Mutation colocamos as operações de mutação de dados
+#(Criação, Atualização e Exclusão)
+type Mutations{
+    #Metodo para criação de um post
+    createPost(content: String!): [Post]
+
+    #Metodo para criação de um comment
+    createComment(content: String!, PostID: String!): [Comment]
+
+
+
+}

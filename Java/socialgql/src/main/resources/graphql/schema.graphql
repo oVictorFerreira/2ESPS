@@ -1,0 +1,22 @@
+# Criando linha de comentários
+
+# Dentro do arquivo schema trabalhamos com as "classes/modelagem" dos tipos de dados
+# Type identifica o tipo  GraphQL que vamos trabalhar, pode ser Query, Mutation ou Personalizado
+
+type Post{
+
+    #Propriedades
+    postID: ID! # Exclamação indica um cmapo obrigatório
+    content: String!
+    comments: [Comment]
+
+}
+
+type Comment{
+
+    #Propriedades
+    commentID: ID!
+    comment: String!
+    postID: ID!
+
+}

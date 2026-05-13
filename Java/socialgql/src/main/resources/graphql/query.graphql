@@ -1,0 +1,10 @@
+#No arquivo query implementamos a estrutura dos metodos para consulta na api GraphQL
+
+type Query{
+    #metodo responsável por buscar um post por Id
+    getPostById(PostID: ID!): Post
+
+    # metodo responsável por buscar todos os posts
+
+    getAllPosts: [Post]
+}
