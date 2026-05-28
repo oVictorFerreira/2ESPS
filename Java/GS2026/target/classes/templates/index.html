@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vlynk Documentation</title>
+
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            background-color: #050505;
+            color: #f5f5f5;
+        }
+
+        .container{
+            width: 90%;
+            margin: auto;
+        }
+
+        header{
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .title{
+            font-size: 4rem;
+            color: #ff7a00;
+            text-shadow:
+                    0 0 5px #ff7a00,
+                    0 0 10px #ff7a00,
+                    0 0 20px #ff7a00;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+
+        .subtitle{
+            max-width: 900px;
+            font-size: 1.2rem;
+            color: #d8d8d8;
+            line-height: 1.8;
+        }
+
+        .cards{
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .card{
+            width: 280px;
+            background-color: #111111;
+            border: 1px solid #ff7a00;
+            border-radius: 15px;
+            padding: 30px;
+            transition: 0.3s;
+            box-shadow:
+                    0 0 10px rgba(255,122,0,0.25);
+        }
+
+        .card:hover{
+            transform: translateY(-8px);
+            box-shadow:
+                    0 0 20px rgba(255,122,0,0.6);
+        }
+
+        .card h2{
+            color: #ff7a00;
+            margin-bottom: 15px;
+        }
+
+        .card p{
+            color: #cfcfcf;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .card a{
+            text-decoration: none;
+            color: #ff7a00;
+            border: 1px solid #ff7a00;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .card a:hover{
+            background-color: #ff7a00;
+            color: #000;
+        }
+
+        .section{
+            padding: 20px 0;
+        }
+
+        .section-title{
+            color: #ff7a00;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            text-shadow:
+                    0 0 10px rgba(255,122,0,0.6);
+        }
+
+        .section-text{
+            color: #d0d0d0;
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        footer{
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #222;
+            color: #777;
+            margin-top: 60px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header class="container">
+
+    <h1 class="title">
+        VLYNK
+    </h1>
+
+    <p class="subtitle">
+        Plataforma desenvolvida para monitoramento e gerenciamento de satélites espaciais,
+        integrando informações obtidas através da TLE API desenvolvida pela NASA com dados internos relacionados
+        à composição estrutural, reciclabilidade de materiais, operadores espaciais e
+        análise técnica dos satélites cadastrados no sistema.
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+            <h2>Satélites</h2>
+
+            <p>
+                Endpoints responsáveis pelo gerenciamento de satélites,
+                integração com a TLE API da NASA e consulta completa de informações.
+            </p>
+
+            <a th:href="@{/docs/satellites}">
+                Visualizar
+            </a>
+        </div>
+
+        <div class="card">
+            <h2>Operadores</h2>
+
+            <p>
+                Endpoints responsáveis pelo cadastro e gerenciamento
+                das organizações operadoras de satélites espaciais.
+            </p>
+
+            <a th:href="@{/docs/operators}">
+                Visualizar
+            </a>
+        </div>
+
+        <div class="card">
+            <h2>Materiais</h2>
+
+            <p>
+                Endpoints relacionados aos materiais estruturais utilizados
+                nos satélites e seus índices de reciclabilidade.
+            </p>
+
+            <a th:href="@{/docs/materials}">
+                Visualizar
+            </a>
+        </div>
+
+    </div>
+
+</header>
+
+<section class="section container">
+
+    <h2 class="section-title">
+        Objetivo do Projeto
+    </h2>
+
+    <p class="section-text">
+        O Vlynk foi desenvolvido com o objetivo de centralizar informações
+        relacionadas ao monitoramento de satélites espaciais e análise de materiais
+        reutilizáveis presentes em estruturas orbitais. O sistema combina dados externos
+        obtidos através da TLE API com informações internas registradas no banco de dados,
+        permitindo consultas técnicas, análise de reciclabilidade e gerenciamento completo
+        de operadores e composições estruturais.
+    </p>
+
+</section>
+
+<section class="section container">
+
+    <h2 class="section-title">
+        Tecnologias Utilizadas
+    </h2>
+
+    <p class="section-text">
+        O projeto foi desenvolvido utilizando Java com Spring Boot,
+        arquitetura RESTful, integração com APIs externas utilizando RestClient,
+        persistência de dados com Spring Data JPA e H2 Database,
+        além de documentação visual construída com Thymeleaf.
+    </p>
+
+
+</section>
+
+<section class="section container">
+
+    <h2 class="section-title">
+        Consumo e Análise de API Externa
+    </h2>
+
+    <p class="section-text">
+        O projeto SatConnect realiza o consumo da API pública TLE API,
+        utilizada para obtenção de informações orbitais de satélites,
+        como NORAD ID e nome oficial dos objetos espaciais monitorados.
+        O consumo da API ocorre de forma complementar ao sistema,
+        permitindo validar e integrar dados externos com informações
+        internas relacionadas a operadores, materiais estruturais
+        e reciclabilidade dos satélites cadastrados.
+    </p>
+
+    <br><br>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h2>
+                Facilidade de Acesso
+            </h2>
+
+            <p>
+                A API apresenta acesso simples e aberto,
+                sem necessidade de autenticação complexa,
+                permitindo integração rápida ao projeto.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h2>
+                Facilidade de Consumo
+            </h2>
+
+            <p>
+                O retorno em JSON facilita o processamento
+                utilizando RestClient no Spring Boot,
+                simplificando a conversão dos dados para DTOs.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h2>
+                Integração com o Projeto
+            </h2>
+
+            <p>
+                A API foi integrada diretamente ao fluxo
+                de cadastro de satélites, permitindo
+                obter automaticamente o nome oficial
+                através do NORAD ID informado.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h2>
+                Velocidade de Resposta
+            </h2>
+
+            <p>
+                Durante os testes realizados,
+                a API apresentou respostas rápidas
+                e estáveis para consultas individuais
+                de satélites.
+                <br>
+                <br>
+                <b>Performance média: ~0.8s</b>
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h2>
+                Documentação
+            </h2>
+
+            <p>
+                A documentação da API apresenta exemplos
+                claros de requisições e estrutura dos dados,
+                facilitando significativamente a implementação
+                e integração no sistema.
+            </p>
+
+            <a href="https://docs.google.com/document/d/1-s2TmtR2zLoYbJiLBlJ1YAPqe7qGuX6-xKYwRYISjP4/edit?pli=1&tab=t.0#heading=h.z6ne0og04bp5">
+                Acessar documentação
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    Vlynk Documentation • GS2026
+
+</footer>
+
+</body>
+</html>

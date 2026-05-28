@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Satélites • Vlynk</title>
+
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            background-color: #050505;
+            color: #f5f5f5;
+        }
+
+        .container{
+            width: 90%;
+            margin: auto;
+        }
+
+        header{
+            padding: 30px 0;
+            border-bottom: 1px solid #1c1c1c;
+        }
+
+        .title{
+            font-size: 3rem;
+            color: #ff7a00;
+            text-shadow:
+                    0 0 5px #ff7a00,
+                    0 0 10px #ff7a00,
+                    0 0 20px #ff7a00;
+            margin-bottom: 15px;
+        }
+
+        .subtitle{
+            color: #cfcfcf;
+            max-width: 900px;
+            line-height: 1.8;
+        }
+
+        .endpoint-card{
+            margin-top: 40px;
+            background-color: #101010;
+            border: 1px solid #ff7a00;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow:
+                    0 0 12px rgba(255,122,0,0.18);
+        }
+
+        .method{
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .get{
+            background-color: #1c1c1c;
+            color: #32d74b;
+            border: 1px solid #32d74b;
+        }
+
+        .post{
+            background-color: #1c1c1c;
+            color: #ff7a00;
+            border: 1px solid #ff7a00;
+        }
+
+        .endpoint{
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            word-break: break-all;
+        }
+
+        .description{
+            color: #d2d2d2;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .section-title{
+            color: #ff7a00;
+            margin-bottom: 15px;
+            margin-top: 20px;
+        }
+
+        pre{
+            background-color: #060606;
+            border: 1px solid #2b2b2b;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            color: #e6e6e6;
+            line-height: 1.6;
+        }
+
+        .back{
+            margin-top: 60px;
+        }
+
+        .back a{
+            text-decoration: none;
+            color: #ff7a00;
+            border: 1px solid #ff7a00;
+            padding: 12px 18px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .back a:hover{
+            background-color: #ff7a00;
+            color: #000;
+        }
+
+        footer{
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 70px;
+            border-top: 1px solid #1f1f1f;
+            color: #666;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header class="container">
+
+    <h1 class="title">
+        Documentação • Satélites
+    </h1>
+
+    <p class="subtitle">
+        Os endpoints de satélites são responsáveis pela integração com a TLE API,
+        cadastro de satélites no sistema, associação de materiais estruturais
+        e consulta consolidada de informações relacionadas à composição e
+        reciclabilidade orbital.
+    </p>
+
+</header>
+
+<main class="container">
+
+    <div class="endpoint-card">
+
+        <span class="method get">GET</span>
+
+        <div class="endpoint">
+            /api/satellites/operator/{operatorId}
+        </div>
+
+        <p class="description">
+            Retorna todos os satélites associados a um operador específico.
+        </p>
+
+    </div>
+
+    <div class="endpoint-card">
+
+        <span class="method get">GET</span>
+
+        <div class="endpoint">
+            /api/satellites/status/{status}
+        </div>
+
+        <p class="description">
+            Retorna todos os satélites cadastrados com determinado status operacional.
+        </p>
+
+        <h3 class="section-title">
+            Exemplos de Status
+        </h3>
+
+        <pre>
+ACTIVE
+INACTIVE
+DEBRIS
+UNKNOWN
+        </pre>
+
+    </div>
+
+    <div class="endpoint-card">
+
+        <span class="method post">POST</span>
+
+        <div class="endpoint">
+            /api/satellites/create
+        </div>
+
+        <p class="description">
+            Cria um satélite no banco de dados a partir do NORAD ID informado.
+            O sistema consulta automaticamente a TLE API para obter
+            o nome oficial do satélite.
+        </p>
+
+        <h3 class="section-title">
+            Request Body
+        </h3>
+
+        <pre>
+{
+  "noradId": 25544,
+  "operatorId": 3,
+  "status": "ACTIVE"
+}
+        </pre>
+
+    </div>
+
+    <div class="endpoint-card">
+
+        <span class="method post">POST</span>
+
+        <div class="endpoint">
+            /api/satellites/{noradId}/materials
+        </div>
+
+        <p class="description">
+            Vincula materiais previamente cadastrados ao satélite informado,
+            registrando peso estrutural, percentual de reciclabilidade
+            e área estrutural relacionada.
+        </p>
+
+        <h3 class="section-title">
+            Request Body
+        </h3>
+
+        <pre>
+{
+  "materialId": 1,
+  "totalWeightKg": 35000,
+  "recyclablePercentage": 88,
+  "structuralArea": "PressureModules"
+}
+        </pre>
+
+    </div>
+
+    <div class="endpoint-card">
+
+        <span class="method get">GET</span>
+
+        <div class="endpoint">
+            /api/satellites/id/{noradId}
+        </div>
+
+        <p class="description">
+            Retorna informações completas do satélite,
+            combinando dados obtidos da TLE API
+            com os materiais registrados no banco de dados.
+        </p>
+
+    </div>
+
+    <div class="endpoint-card">
+
+        <span class="method get">GET</span>
+
+        <div class="endpoint">
+            /api/satellites/material/{type}
+        </div>
+
+        <p class="description">
+            Retorna os satélites que possuem determinado tipo de material estrutural.
+        </p>
+
+        <h3 class="section-title">
+            Exemplos de MaterialType
+        </h3>
+
+        <pre>
+METAL
+POLYMER
+COMPOSITE
+CERAMIC
+ELECTRONIC
+SOLAR_COMPONENT
+FUEL
+GLASS
+        </pre>
+
+    </div>
+
+    <div class="back">
+
+        <a th:href="@{/docs}">
+            Voltar para documentação principal
+        </a>
+
+    </div>
+
+</main>
+
+<footer>
+
+    Vlynk • Satellite Endpoints Documentation
+
+</footer>
+
+</body>
+</html>
